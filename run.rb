@@ -1,7 +1,7 @@
 puts "Prepping build dir..."
 `rm -rf build`
 `mkdir build`
-`cp src/css/app.css build/`
+`cp src/css/* build/`
 `cp src/index.html build/`
 puts "Running babel..."
 `node_modules/.bin/babel --presets es2015,react ./src/js --out-dir lib`
