@@ -13,9 +13,9 @@ var GAME_DURATION = 10000;
 var NUM_TILES = 12;
 var NUM_TILES_LARGE = 16;
 var SMALL_SCREEN_WIDTH = 768;
-var DIGLETT_MAX_TIME = 900;
-var DIGLETT_REFRESH_FREQUENCY = 2000;
-var DIGLETT_SPAWN_FREQUENCY = 0.02;
+var DIGLETT_MAX_TIME = 1000;
+var DIGLETT_REFRESH_FREQUENCY = 1000;
+var DIGLETT_SPAWN_FREQUENCY = 0.1;
 
 var App = React.createClass({
   displayName: 'App',
@@ -128,7 +128,7 @@ var App = React.createClass({
             };
           } else {
             var nextTime = undefined;
-            if (this.state.time % DIGLETT_REFRESH_FREQUENCY) {
+            if (this.state.time % DIGLETT_REFRESH_FREQUENCY == 0) {
               nextTime = this.setDiglettTimer();
             }
 
