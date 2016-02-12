@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 .clearfix:before,
 .clearfix:after {
   content: "";
@@ -8,29 +12,35 @@
   clear: both;
 }
 
-.container {
-  max-width: 950px;
-  margin: auto;
-}
-
 .app {
+  box-sizing: border-box;
   background-color: #76C89C;
   padding: 1em;
+  height: 100vh;
 }
 
-.board {
-  /*padding: 1em;*/
+.start-screen {
+  text-align: center;
 }
 
-.score {
-  padding: 1em;
-  font-size: 2em;
-  font-family: 'VT323', 'monospace';
+.start-screen h1 {
+  margin: 1em 0 1em;
   color: #fff;
+  font-size: 3em;
+  font-family: 'VT323', 'monospace';
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
 }
 
+.start-screen .diglett {
+  display: inline-block;
+  margin-bottom: 5em;
+}
+
+.score,
 .timer {
-  padding: 1em;
+  padding: 0 1em;
+  margin-bottom: 1em;
   font-size: 2em;
   font-family: 'VT323', 'monospace';
   color: #fff;
@@ -128,4 +138,11 @@
   -webkit-font-smoothing: antialiased;
   font-family: 'VT323', 'monospace';
   font-weight: 600;
+}
+
+@media (min-width: 30rem) {
+  .container {
+    max-width: 960px;
+    margin: auto;
+  }
 }

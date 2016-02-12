@@ -1,6 +1,7 @@
 const Board = require('./components/board');
 const Score = require('./components/score');
-const StartButton = require('./components/start-button');
+const StartScreen = require('./components/start-screen');
+const EndScreen = require('./components/end-screen');
 const Timer = require('./components/timer');
 
 const App = React.createClass({
@@ -9,16 +10,14 @@ const App = React.createClass({
   },
 
   render() {
-    let startButton;
-    if (!this.state.running) {
-      startButton = <StartButton
-        disabled={this.state.running}
+    let screen;
+    if (this.state.end) {
+      screen = <EndScreen
+        score={this.state.score}
         startGame={this.startGame}
-      />;
-    }
-
-    return (
-      <div className="app">
+      />
+    } else if (this.state.running) {
+      screen = <div>
         <Score
           score={this.state.score}
         />
@@ -27,13 +26,24 @@ const App = React.createClass({
           time={this.state.time}
         />
 
-        {startButton}
-
         <Board
           tiles={this.state.tiles}
           updateScore={this.updateScore}
           difficulty={0.01}
         />
+      </div>
+    } else {
+      screen = <StartScreen
+        disabled={this.state.running}
+        startGame={this.startGame}
+      />;
+    }
+
+    return (
+      <div className="app">
+
+        {screen}
+
       </div>
     );
   },
@@ -60,6 +70,7 @@ const App = React.createClass({
     this.setState({
       score: 0,
       running: true,
+      end: false,
       time: 10000,
       tiles: this.generateTiles()
     }, this.tick);

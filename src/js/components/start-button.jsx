@@ -5,7 +5,7 @@ const StartButton = React.createClass({
         className="start-button"
         onClick={this.onClick}
       >
-        Start
+        {this.props.label}
       </button>
     );
   },
