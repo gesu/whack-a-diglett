@@ -4,6 +4,16 @@ const StartScreen = require('./components/start-screen');
 const EndScreen = require('./components/end-screen');
 const Timer = require('./components/timer');
 
+// Game constants
+const TICK_RATE = 100;
+const GAME_DURATION = 10000;
+const NUM_TILES = 12;
+const NUM_TILES_LARGE = 16;
+const SMALL_SCREEN_WIDTH = 768;
+const DIGLETT_MAX_TIME = 900;
+const DIGLETT_REFRESH_FREQUENCY = 2000;
+const DIGLETT_SPAWN_FREQUENCY = 0.02;
+
 const App = React.createClass({
   getInitialState() {
     return {};
@@ -49,13 +59,18 @@ const App = React.createClass({
   },
 
   setDiglettTimer() {
-    return (Math.random() - 0.98) > 0 ? 900 : 0;
+    return (Math.random() - (1 - DIGLETT_SPAWN_FREQUENCY)) > 0 ? DIGLETT_MAX_TIME : 0;
   },
 
   generateTiles() {
+    let numTiles = NUM_TILES;
+    if (this.props.width > SMALL_SCREEN_WIDTH) {
+      numTiles = NUM_TILES_LARGE;
+    }
+
     let tiles = [];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < numTiles; i++) {
       tiles.push({
         id: `${i}`,
         diglettTimer: this.setDiglettTimer(),
@@ -71,7 +86,7 @@ const App = React.createClass({
       score: 0,
       running: true,
       end: false,
-      time: 10000,
+      time: GAME_DURATION,
       tiles: this.generateTiles()
     }, this.tick);
   },
@@ -100,7 +115,7 @@ const App = React.createClass({
       setTimeout(function() {
         let nextTiles = this.state.tiles.map(function(tile) {
           if (tile.diglettTimer > 0) {
-            let nextTime = tile.diglettTimer - 100;
+            let nextTime = tile.diglettTimer - TICK_RATE;
 
             return {
               id: tile.id,
@@ -109,7 +124,7 @@ const App = React.createClass({
             }
           } else {
             let nextTime;
-            if (this.state.time % 3000) {
+            if (this.state.time % DIGLETT_REFRESH_FREQUENCY) {
               nextTime = this.setDiglettTimer();
             }
 
@@ -122,12 +137,12 @@ const App = React.createClass({
         }.bind(this));
 
         this.setState({
-          time: this.state.time - 100,
+          time: this.state.time - TICK_RATE,
           tiles: nextTiles
         });
 
         this.tick();
-      }.bind(this), 100);
+      }.bind(this), TICK_RATE);
     } else {
       this.endGame();
     }
@@ -137,5 +152,5 @@ const App = React.createClass({
 document.addEventListener("DOMContentLoaded", function(event) {
   let mount = document.getElementById('app-mount');
 
-  ReactDOM.render(<App width={mount.offsetWidth} height={mount.offsetHeight} />, mount);
+  ReactDOM.render(<App width={mount.offsetWidth} />, mount);
 });
