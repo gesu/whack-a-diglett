@@ -10,9 +10,9 @@ const GAME_DURATION = 10000;
 const NUM_TILES = 12;
 const NUM_TILES_LARGE = 16;
 const SMALL_SCREEN_WIDTH = 768;
-const DIGLETT_MAX_TIME = 900;
-const DIGLETT_REFRESH_FREQUENCY = 2000;
-const DIGLETT_SPAWN_FREQUENCY = 0.02;
+const DIGLETT_MAX_TIME = 1000;
+const DIGLETT_REFRESH_FREQUENCY = 1000;
+const DIGLETT_SPAWN_FREQUENCY = 0.1;
 
 const App = React.createClass({
   getInitialState() {
@@ -133,7 +133,7 @@ const App = React.createClass({
             }
           } else {
             let nextTime;
-            if (this.state.time % DIGLETT_REFRESH_FREQUENCY) {
+            if (this.state.time % DIGLETT_REFRESH_FREQUENCY == 0) {
               nextTime = this.setDiglettTimer();
             }
 
