@@ -1,0 +1,194 @@
+html {
+  font-size: 16px;
+  background-color: #43C780;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.app {
+  box-sizing: border-box;
+  background-color: #35EB89;
+  padding: 1em;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.start-screen {
+  text-align: center;
+}
+
+.start-screen h1 {
+  margin: 1em 0 1.5em;
+  color: #fff;
+  font-size: 3em;
+  font-family: 'VT323', 'monospace';
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+}
+
+.start-screen .diglett {
+  display: inline-block;
+  margin-bottom: 5em;
+  margin: 0 .7em 5em;
+}
+
+.score,
+.timer {
+  padding: 0 1em;
+  margin-bottom: 1em;
+  font-size: 2em;
+  font-family: 'VT323', 'monospace';
+  color: #fff;
+}
+
+.new-high-score {
+  position: relative;
+  top: -2em;
+  color: #4292FF;
+  font-size: 2em;
+  font-family: 'VT323', 'monospace';
+  -webkit-font-smoothing: antialiased;
+}
+
+.tile {
+  box-sizing: border-box;
+  width: 33%;
+  height: 100px;
+  padding: 3%;
+  float: left;
+  text-align: center;
+}
+
+.diglett {
+  position: relative;
+  background-color: #C27436;
+  width: 60px;
+  height: 60px;
+  border-radius: 50% 50% 3px 3px;
+  margin: auto;
+  cursor: pointer;
+  border-bottom: 3px solid #754117;
+  animation-name: bouncy;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.diglett.clicked {
+  background-color: #A15B59;
+  animation-name: dizzy;
+}
+
+.diglett.clicked .nose {
+  background-color: #F38C7A;
+}
+
+.diglett .dead-eyes {
+  position: absolute;
+  top: 4px;
+  left: 16px;
+  color: #000;
+  font-family: sans-serif;
+  font-size: 27px;
+}
+
+.diglett .eyes {
+  position: absolute;
+  top: 15px;
+  left: 24px;
+  width: 10px;
+  height: 10px;
+  border-left: 4px solid #000;
+  border-right: 4px solid #000;
+}
+
+.diglett .eyes:before,
+.diglett .eyes:after {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  content: "";
+  background-color: #fff;
+  width: 4px;
+  height: 4px;
+}
+
+.diglett .eyes:after {
+  left: 10px;
+}
+
+.diglett .nose {
+  position: absolute;
+  top: 25px;
+  left: 24px;
+  display: block;
+  background-color: #FD6E55;
+  width: 20px;
+  height: 12px;
+  border-radius: 50%;
+  border-bottom: 3px solid #710217;
+}
+
+@keyframes bouncy {
+  0% {
+    transform: scaleY(1) rotate(-2deg);
+  }
+
+  50% {
+    transform: scaleY(1.1) rotate(2deg);
+  }
+
+  100% {
+    transform: scaleY(1) rotate(-2deg);
+  }
+}
+
+@keyframes dizzy {
+  0% {
+    transform: rotate(-9deg);
+  }
+
+  50% {
+    transform: rotate(9deg);
+  }
+
+  100% {
+    transform: rotate(-9deg);
+  }
+}
+
+.start-button {
+  display: block;
+  margin: auto;
+  background-color: #FFBD35;
+  border-radius: 4px;
+  border: none;
+  border-bottom: 3px solid #D18D00;
+  padding: .5em 1.3em;
+  font-size: 2em;
+  cursor: pointer;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'VT323', 'monospace';
+  font-weight: 600;
+}
+
+@media (min-width: 30rem) {
+  .container {
+    max-width: 960px;
+    margin: auto;
+  }
+
+  .tile {
+    width: 25%;
+    height: 110px;
+  }
+}
