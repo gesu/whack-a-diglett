@@ -1,5 +1,6 @@
 html {
   font-size: 16px;
+  background-color: #B8C0DA;
 }
 
 .clearfix:before,
@@ -24,7 +25,7 @@ html {
 }
 
 .start-screen h1 {
-  margin: 1em 0 1em;
+  margin: 1em 0 1.5em;
   color: #fff;
   font-size: 3em;
   font-family: 'VT323', 'monospace';
@@ -35,6 +36,7 @@ html {
 .start-screen .diglett {
   display: inline-block;
   margin-bottom: 5em;
+  margin: 0 .7em 5em;
 }
 
 .score,
@@ -64,10 +66,15 @@ html {
   margin: auto;
   cursor: pointer;
   border-bottom: 3px solid #754117;
+  animation-name: bouncy;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
 }
 
 .diglett.clicked {
   background-color: #A15B59;
+  animation-name: dizzy;
 }
 
 .diglett.clicked .nose {
@@ -120,8 +127,32 @@ html {
   border-bottom: 3px solid #710217;
 }
 
-.tile.diglett.clicked {
-  background-color: red;
+@keyframes bouncy {
+  0% {
+    transform: scaleY(1) rotate(-2deg);
+  }
+
+  50% {
+    transform: scaleY(1.1) rotate(2deg);
+  }
+
+  100% {
+    transform: scaleY(1) rotate(-2deg);
+  }
+}
+
+@keyframes dizzy {
+  0% {
+    transform: rotate(-9deg);
+  }
+
+  50% {
+    transform: rotate(9deg);
+  }
+
+  100% {
+    transform: rotate(-9deg);
+  }
 }
 
 .start-button {

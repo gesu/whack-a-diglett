@@ -8,7 +8,7 @@ const StartScreen = React.createClass({
         <h1>Whack-a-Diglett v1.0</h1>
 
         <Diglett clicked={false} />
-        <Diglett clicked={true} />
+        <Diglett clicked={false} />
         <Diglett clicked={false} />
 
         <StartButton
