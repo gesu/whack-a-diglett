@@ -49,6 +49,15 @@ html {
   color: #fff;
 }
 
+.new-high-score {
+  position: relative;
+  top: -2em;
+  color: #4292FF;
+  font-size: 2em;
+  font-family: 'VT323', 'monospace';
+  -webkit-font-smoothing: antialiased;
+}
+
 .tile {
   box-sizing: border-box;
   width: 33%;

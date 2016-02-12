@@ -16,7 +16,9 @@ const DIGLETT_SPAWN_FREQUENCY = 0.02;
 
 const App = React.createClass({
   getInitialState() {
-    return {};
+    return {
+      maxScore: 0
+    };
   },
 
   render() {
@@ -24,6 +26,7 @@ const App = React.createClass({
     if (this.state.end) {
       screen = <EndScreen
         score={this.state.score}
+        newHighScore={this.state.newHighScore}
         startGame={this.startGame}
       />
     } else if (this.state.running) {
@@ -87,14 +90,20 @@ const App = React.createClass({
       running: true,
       end: false,
       time: GAME_DURATION,
-      tiles: this.generateTiles()
+      tiles: this.generateTiles(),
+      newHighScore: false
     }, this.tick);
   },
 
   endGame() {
+    let newHighScore = this.state.score > this.state.maxScore;
+    let newMaxScore = newHighScore ? this.state.score : this.state.maxScore;
+
     this.setState({
       running: false,
-      end: true
+      end: true,
+      maxScore: newMaxScore,
+      newHighScore: newHighScore
     });
   },
 
